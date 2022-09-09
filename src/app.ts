@@ -29,9 +29,13 @@ const startApp = async (): Promise<void> => {
 };
 
 const validateInput = (text: string): boolean => {
-  let numberInput: number = +text;
+  let numberInput = parseInt(text);
 
-  if (numberInput >= 1 && numberInput <= 49) {
+  if (
+    numberInput >= 1 &&
+    numberInput <= 49 &&
+    !chosenNumbers.includes(numberInput)
+  ) {
     return true;
   }
 
@@ -43,20 +47,19 @@ const randomNewNumber = (): number => {
 };
 
 const countNumbers = (): number => {
-  let number: number = 0;
-
-  for (let i = 0; randomNumbers.length; i++) {
-    number++;
+  let number = 0;
+  for (let i = 0; i < randomNumbers.length; i++) {
+    if (chosenNumbers.includes(randomNumbers[i])) {
+      number++;
+    }
   }
-
   return number;
 };
 
 const validateRandomNumber = (number: number): boolean => {
-  if (number >= 1 && number <= 49) {
+  if (number >= 1 && number <= 49 && !randomNumbers.includes(number)) {
     return true;
-  }
-  return false;
+  } else return false;
 };
 
 const printResult = (): void => {
