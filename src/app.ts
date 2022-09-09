@@ -29,7 +29,7 @@ const startApp = async (): Promise<void> => {
 };
 
 const validateInput = (text: string): boolean => {
-  let numberInput = parseInt(text);
+  const numberInput = parseInt(text);
 
   if (
     numberInput >= 1 &&
